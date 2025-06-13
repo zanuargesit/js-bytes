@@ -1,42 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kalkulator Modern</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="kalkulator" role="application" aria-label="Calculator">
-    <div class="kalkulator-screen" aria-live="polite" aria-atomic="true">
-      <div class="kalkulator-display">0</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kalkulator Modern</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style></style>
+  </head>
+  <body
+    class="bg-[#60BEFF] font-sans flex justify-center items-center h-screen"
+  >
+    <div
+      class="kalkulator bg-[#F7F8FB] w-[375px] h-[770px] rounded-[39px] shadow-xs"
+      role="application"
+      aria-label="Calculator"
+    >
+      <div
+        class="kalkulator-screen flex justify-center items-center rounded-t-[39px] h-89 px-3"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div
+          class="kalkulator-display w-full h-9/10 text-right items-right p-4 pt-60 text-5xl"
+        >
+          0
+        </div>
+      </div>
+      <div
+        class="kalkulator-keys grid-cols-4 gap-5 grid mx-[33px] my-[px]"
+        role="group"
+        aria-label="Calculator keys"
+      >
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="%"
+          aria-label="Percent"
+        >
+          %
+        </button>
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="√"
+          aria-label="Square Root"
+        >
+          √
+        </button>
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="/"
+          aria-label="Divide"
+        >
+          &divide;
+        </button>
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="*"
+          aria-label="Multiply"
+        >
+          &times;
+        </button>
+
+        <button
+          value="7"
+          aria-label="Seven"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          7
+        </button>
+        <button
+          value="8"
+          aria-label="Eight"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          8
+        </button>
+        <button
+          value="9"
+          aria-label="Nine"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          9
+        </button>
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="-"
+          aria-label="Minus"
+        >
+          -
+        </button>
+
+        <button
+          value="4"
+          aria-label="Four"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          4
+        </button>
+        <button
+          value="5"
+          aria-label="Five"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          5
+        </button>
+        <button
+          value="6"
+          aria-label="Six"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          6
+        </button>
+        <button
+          class="operator text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="+"
+          aria-label="Plus"
+        >
+          +
+        </button>
+
+        <button
+          value="1"
+          aria-label="One"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          1
+        </button>
+        <button
+          value="2"
+          aria-label="Two"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          2
+        </button>
+        <button
+          value="3"
+          aria-label="Three"
+          class="shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+        >
+          3
+        </button>
+        <button
+          class="equal-sign text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)] "
+          value="="
+          aria-label="Equals"
+        >
+          =
+        </button>
+
+        <button
+          class="zero shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[144px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)] col-span-2"
+          value="0"
+          aria-label="Zero"
+        >
+          0
+        </button>
+        <button
+          class="decimal shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="."
+          aria-label="Decimal point"
+        >
+          .
+        </button>
+        <button
+          class="all-clear shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          value="AC"
+          aria-label="All clear"
+        >
+          AC
+        </button>
+      </div>
     </div>
-    <div class="kalkulator-keys" role="group" aria-label="Calculator keys">
-      <button class="operator" value="%" aria-label="Percent">%</button>
-      <button class="operator" value="√" aria-label="Square Root">√</button>
-      <button class="operator" value="/" aria-label="Divide">&divide;</button>
-      <button class="operator" value="*" aria-label="Multiply">&times;</button>
-
-      <button value="7" aria-label="Seven">7</button>
-      <button value="8" aria-label="Eight">8</button>
-      <button value="9" aria-label="Nine">9</button>
-      <button class="operator" value="-" aria-label="Minus">-</button>
-
-      <button value="4" aria-label="Four">4</button>
-      <button value="5" aria-label="Five">5</button>
-      <button value="6" aria-label="Six">6</button>
-      <button class="operator" value="+" aria-label="Plus">+</button>
-
-      <button value="1" aria-label="One">1</button>
-      <button value="2" aria-label="Two">2</button>
-      <button value="3" aria-label="Three">3</button>
-      <button class="equal-sign" value="=" aria-label="Equals">=</button>
-
-      <button class="zero" value="0" aria-label="Zero">0</button>
-      <button class="decimal" value="." aria-label="Decimal point">.</button>
-      <button class="all-clear" value="AC" aria-label="All clear">AC</button>
-    </div>
-  </div>  
-  <script src="script.js"></script>
-</body>
- 
+    <script src="script.js"></script>
+  </body>
+</html>
