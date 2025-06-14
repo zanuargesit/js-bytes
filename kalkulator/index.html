@@ -5,12 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kalkulator Modern</title>
     <link rel="stylesheet" href="style.css" />
+    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <style></style>
+    
   </head>
   <body
     class="bg-[#60BEFF] font-sans flex justify-center items-center h-screen"
   >
+    <button
+    id="themeToggle"
+    value="theme"
+    aria-label="Toggle Theme"
+    class="shadow-2xl text-[24px] font-bold bg-[#FFFFFF] w-[62px] h-[62px] rounded-[12px] hover:bg-black-100 hover:[box-shadow:-4px_4px_10px_rgba(25,172,255,0.6)] m-4"
+>
+    💡
+</button>
     <div
       class="kalkulator bg-[#F7F8FB] w-[375px] h-[770px] rounded-[39px] shadow-xs"
       role="application"
@@ -141,7 +150,7 @@
           3
         </button>
         <button
-          class="equal-sign text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)] "
+          class="equal-sign text-[24px] shadow-xs font-bold bg-[#ADE2FF] text-[#109DFF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#B2DAFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
           value="="
           aria-label="Equals"
         >
@@ -163,7 +172,7 @@
           .
         </button>
         <button
-          class="all-clear shadow-xs text-[24px] font-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
+          class="all-clear shadow-xs text-[24px] fonta-bold bg-[#FFFFFF] text-[#38B9FF] w-[62px] h-[62px] rounded-[12px] hover:bg-[#19ACFF] hover:text-[#FFFFFF] hover:[box-shadow:-4px_4px_8px_rgba(25,172,255,0.6)]"
           value="AC"
           aria-label="All clear"
         >
@@ -171,6 +180,7 @@
         </button>
       </div>
     </div>
-    <script src="script.js"></script>
+   <script src="script.js"></script>
+    
   </body>
 </html>
