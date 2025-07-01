@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer App - Elegan & Modern</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            animation: {
+              "pulse-slow": "pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+              "bounce-subtle": "bounce 2s infinite",
+              glow: "glow 2s ease-in-out infinite alternate",
+            },
+            keyframes: {
+              glow: {
+                from: { boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)" },
+                to: { boxShadow: "0 0 30px rgba(59, 130, 246, 0.8)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+      .gradient-border {
+        background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        padding: 2px;
+        border-radius: 20px;
+      }
+      .gradient-border-content {
+        background: #1f2937;
+        border-radius: 18px;
+      }
+      .timer-glow {
+        box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+      }
+      .active-glow {
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 flex items-center justify-center p-4"
+  >
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+      <div
+        class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow"
+      ></div>
+      <div
+        class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse-slow"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-10 animate-bounce-subtle"
+      ></div>
+    </div>
+
+    <div class="relative z-10 w-full max-w-md mx-auto">
+      <div class="text-center mb-8">
+        <h1 class="text-4xl font-bold text-white mb-2 tracking-wide">
+          ⏰
+          <span
+            class="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+            >Timer</span
+          >
+        </h1>
+        <p class="text-gray-300 text-sm">Aplikasi timer modern & elegan</p>
+      </div>
+
+      <div class="gradient-border mb-6">
+        <div class="gradient-border-content glass-effect p-8 text-center">
+          <div id="timerDisplay" class="mb-8">
+            <div
+              class="text-6xl font-mono font-bold text-white mb-2 timer-glow"
+              id="timeDisplay"
+            >
+              00:00
+            </div>
+            <div
+              class="text-sm text-gray-400 uppercase tracking-wider"
+              id="statusText"
+            >
+              Siap Dimulai
+            </div>
+          </div>
+
+          <div class="relative w-32 h-32 mx-auto mb-8">
+            <svg class="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+              <circle
+                cx="60"
+                cy="60"
+                r="54"
+                stroke="rgba(255,255,255,0.1)"
+                stroke-width="8"
+                fill="none"
+              />
+              <circle
+                id="progressRing"
+                cx="60"
+                cy="60"
+                r="54"
+                stroke="url(#gradient)"
+                stroke-width="8"
+                fill="none"
+                stroke-linecap="round"
+                stroke-dasharray="339.292"
+                stroke-dashoffset="339.292"
+                class="transition-all duration-1000 ease-in-out"
+              />
+              <defs>
+                <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style="stop-color: #667eea" />
+                  <stop offset="100%" style="stop-color: #764ba2" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span id="progressPercent" class="text-2xl font-bold text-white"
+                >0%</span
+              >
+            </div>
+          </div>
+
+          <div id="timeInputSection" class="mb-6">
+            <div class="flex justify-center space-x-2 mb-4">
+              <div class="text-center">
+                <input
+                  type="number"
+                  id="minutesInput"
+                  min="0"
+                  max="59"
+                  value="5"
+                  class="w-16 h-12 text-center text-xl font-bold bg-gray-800 text-white border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none"
+                />
+                <label class="block text-xs text-gray-400 mt-1">Menit</label>
+              </div>
+              <div class="text-center">
+                <input
+                  type="number"
+                  id="secondsInput"
+                  min="0"
+                  max="59"
+                  value="0"
+                  class="w-16 h-12 text-center text-xl font-bold bg-gray-800 text-white border border-gray-600 rounded-lg focus:border-blue-500 focus:outline-none"
+                />
+                <label class="block text-xs text-gray-400 mt-1">Detik</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex justify-center space-x-4">
+            <button
+              id="startBtn"
+              class="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-xl font-semibold hover:from-green-600 hover:to-emerald-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              ▶️ Mulai
+            </button>
+            <button
+              id="pauseBtn"
+              class="px-6 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-xl font-semibold hover:from-yellow-600 hover:to-orange-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl opacity-50 cursor-not-allowed"
+              disabled
+            >
+              ⏸️ Jeda
+            </button>
+            <button
+              id="resetBtn"
+              class="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-600 text-white rounded-xl font-semibold hover:from-red-600 hover:to-pink-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+            >
+              🔄 Reset
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-effect rounded-2xl p-6 mb-6">
+        <h3 class="text-white font-semibold mb-4 text-center">
+          ⚡ Timer Cepat
+        </h3>
+        <div class="grid grid-cols-4 gap-3">
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="1"
+          >
+            1m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="5"
+          >
+            5m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="10"
+          >
+            10m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="15"
+          >
+            15m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="20"
+          >
+            20m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="25"
+          >
+            25m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="30"
+          >
+            30m
+          </button>
+          <button
+            class="preset-btn bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-lg text-sm font-semibold transition-all duration-200 hover:scale-105"
+            data-minutes="60"
+          >
+            60m
+          </button>
+        </div>
+      </div>
+
+      <div class="glass-effect rounded-2xl p-6">
+        <h3 class="text-white font-semibold mb-4 text-center">⚙️ Pengaturan</h3>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <label class="text-gray-300 text-sm">Suara Notifikasi</label>
+            <button
+              id="soundToggle"
+              class="w-12 h-6 bg-blue-500 rounded-full relative transition-all duration-300"
+            >
+              <div
+                class="w-5 h-5 bg-white rounded-full absolute top-0.5 right-0.5 transition-all duration-300"
+              ></div>
+            </button>
+          </div>
+          <div class="flex items-center justify-between">
+            <label class="text-gray-300 text-sm">Auto-repeat</label>
+            <button
+              id="repeatToggle"
+              class="w-12 h-6 bg-gray-600 rounded-full relative transition-all duration-300"
+            >
+              <div
+                class="w-5 h-5 bg-white rounded-full absolute top-0.5 left-0.5 transition-all duration-300"
+              ></div>
+            </button>
+          </div>
+          <div>
+            <label class="text-gray-300 text-sm block mb-2">Volume Suara</label>
+            <input
+              type="range"
+              id="volumeSlider"
+              min="0"
+              max="100"
+              value="50"
+              class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="notificationModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 opacity-0 pointer-events-none transition-all duration-300"
+    >
+      <div
+        class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl text-center max-w-sm mx-4 transform scale-95 transition-all duration-300"
+      >
+        <div class="text-6xl mb-4">⏰</div>
+        <h2 class="text-2xl font-bold text-white mb-2">Waktu Habis!</h2>
+        <p class="text-gray-300 mb-6">
+          Timer telah selesai. Saatnya beristirahat!
+        </p>
+        <button
+          id="closeNotification"
+          class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-purple-700 transition-all duration-200"
+        >
+          Tutup
+        </button>
+      </div>
+    </div>
+<script src="script.js"></script>
+
+  </body>
+</html>
